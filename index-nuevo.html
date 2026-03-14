@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="IM Networks - Internet de alta velocidad para hogares y negocios. Planes desde $349 MXN. Estabilidad garantizada.">
+    <meta name="keywords" content="internet, wifi, banda ancha, internet hogar, IM Networks">
+    <title>IM Networks | Internet de Alta Velocidad</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primario: #1e90ff;
+            --color-primario-oscuro: #0066cc;
+            --color-secundario: #333;
+            --color-fondo: #f9f9f9;
+            --color-texto: #333;
+            --sombra-suave: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --sombra-fuerte: 0 10px 30px rgba(0, 0, 0, 0.15);
+            --transicion: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--color-texto);
+            overflow-x: hidden;
+        }
+
+        /* Sticky Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: var(--transicion);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-secundario);
+            letter-spacing: 1px;
+        }
+
+        .im {
+            color: var(--color-primario);
+            font-weight: 800;
+        }
+
+        .navs-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .navs-links a {
+            text-decoration: none;
+            color: var(--color-secundario);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transicion);
+        }
+
+        .navs-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primario);
+            transition: width 0.3s;
+        }
+
+        .navs-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-cta-header {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            color: white !important;
+            padding: 0.6rem 1.2rem !important;
+            border-radius: 25px;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        header.scrolled .btn-cta-header {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: all;
+        }
+
+        .btn-cta-header:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+        }
+
+        /* Hero con Partículas */
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            overflow: hidden;
+        }
+
+        #canvas-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        #hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        #hero p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transicion);
+            box-shadow: 0 4px 15px rgba(30, 144, 255, 0.4);
+            animation: fadeInUp 1s ease 0.4s both;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 144, 255, 0.5);
+        }
+
+        /* Calculadora*/
+        #calculadora {
+            padding: 4rem 2rem;
+            background: white;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #calculadora h2 {
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+            color: var(--color-secundario);
+        }
+
+        .calculadora-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .calculadora-container {
+            background: var(--color-fondo);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .slider-container {
+            margin-bottom: 2rem;
+        }
+
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--color-secundario);
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--color-primario);
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(30, 144, 255, 0.4);
+            transition: var(--transicion);
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .dispositivos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .dispositivo-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transicion);
+            border: 2px solid transparent;
+            user-select: none;
+        }
+
+        .dispositivo-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--sombra-suave);
+        }
+
+        .dispositivo-item.active {
+            border-color: var(--color-primario);
+            background: rgba(30, 144, 255, 0.05);
+        }
+
+        .dispositivo-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dispositivo-count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primario);
+        }
+
+        .resultado-calculadora {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .resultado-calculadora.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .plan-recomendado {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-precio {
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        /* Contador de Confianza */
+        #contadores {
+            background: var(--color-secundario);
+            color: white;
+            padding: 4rem 2rem;
+        }
+
+        .contadores-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contador-item {
+            padding: 1rem;
+        }
+
+        .contador-numero {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--color-primario);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .contador-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Sección Paquetes */
+        #paquetes {
+            padding: 6rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        #paquetes h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--color-secundario);
+        }
+
+        .paquetes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .paquetes-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+            transition: var(--transicion);
+            position: relative;
+            border: 1px solid #eee;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .paquetes-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .paquetes-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--sombra-fuerte);
+        }
+
+        .paquetes-card.popular {
+            border: 2px solid var(--color-primario);
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .paquetes-card.popular.visible:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 10px rgba(30, 144, 255, 0.3);
+            z-index: 5;
+        }
+
+        .paquetes-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--color-primario);
+        }
+
+        .paquetes-card h3 {
+            padding: 1.5rem 1.5rem 0.5rem;
+            color: var(--color-secundario);
+            font-size: 1.3rem;
+        }
+
+        .velocidad {
+            padding: 0 1.5rem;
+            color: var(--color-primario);
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .precio {
+            padding: 0.5rem 1.5rem;
+            color: #2ecc71;
+            font-weight: 800;
+            font-size: 2rem;
+        }
+
+        .precio span {
+            font-size: 0.9rem;
+            color: #999;
+            font-weight: 400;
+        }
+
+        .descripcion {
+            padding: 0.5rem 1.5rem 1rem;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .paquetes-card button {
+            margin: 0 1.5rem 1.5rem;
+            padding: 0.8rem 1.5rem;
+            width: calc(100% - 3rem);
+            background: linear-gradient(135deg, var(--color-secundario), #555);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transicion);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+        }
+
+        .paquetes-card button:hover {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3);
+        }
+
+        /* FAQ Acordeón */
+        #faq {
+            padding: 4rem 2rem;
+            background: var(--color-fondo);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #faq h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--color-secundario);
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--sombra-suave);
+        }
+
+        .faq-pregunta {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--color-secundario);
+            transition: var(--transicion);
+        }
+
+        .faq-pregunta:hover {
+            background: rgba(30, 144, 255, 0.05);
+        }
+
+        .faq-pregunta::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: var(--color-primario);
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-pregunta::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-respuesta {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-respuesta {
+            max-height: 200px;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        /* Contacto */
+        #contacto {
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        #contacto h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            color: var(--color-secundario);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--sombra-suave);
+        }
+
+        input, textarea, select {
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            transition: var(--transicion);
+            background: #fafafa;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--color-primario);
+            box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.1);
+            background: white;
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        form button {
+            background: linear-gradient(135deg, var(--color-primario), var(--color-primario-oscuro));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transicion);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 0.5rem;
+        }
+
+        form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 144, 255, 0.4);
+        }
+
+        /* WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: var(--transicion);
+            z-index: 9999;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
+            animation: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-secundario);
+            color: white;
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-logo .im {
+            color: var(--color-primario);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            margin-top: 1.5rem;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.7;
+            transition: var(--transicion);
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--color-primario);
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            .navs-links {
+                gap: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .btn-cta-header {
+                display: none;
+            }
+
+            .dispositivos-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contador-numero {
+                font-size: 2.5rem;
+            }
+
+            .paquetes-card.popular {
+                transform: scale(1);
+                order: -1;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px;
+            }
+
+            .whatsapp-text {
+                display: none;
+            }
+
+            .whatsapp-float svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <nav>
+            <div class="logo">
+                <span class="im">IM</span>NETWORKS
+            </div>
+            <ul class="navs-links">
+                <li><a href="#hero">INICIO</a></li>
+                <li><a href="#calculadora">CALCULADORA</a></li>
+                <li><a href="#paquetes">PAQUETES</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contacto">CONTACTO</a></li>
+                <li><a href="https://wa.me/9994489035" class="btn-cta-header" target="_blank">Contratar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero con Partículas -->
+        <section id="hero">
+            <canvas id="canvas-particles"></canvas>
+            <div class="hero-content">
+                <h1>Tu mundo no se detiene. Nosotros tampoco.</h1>
+                <p>Internet estable, rápido y optimizado para ofrecer la mejor experiencia en cada conexión.</p>
+                <button class="cta-button" onclick="document.getElementById('calculadora').scrollIntoView({behavior: 'smooth'})">
+                    Encuentra tu plan ideal →
+                </button>
+            </div>
+        </section>
+
+        <!-- Calculadora Interactiva -->
+        <section id="calculadora">
+            <h2>¿Qué plan necesitas?</h2>
+            <p class="calculadora-subtitle">Selecciona tus dispositivos y te recomendamos el mejor plan</p>
+            
+            <div class="calculadora-container">
+                <div class="dispositivos-grid">
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('celular', 1)">
+                        <div class="dispositivo-icon">📱</div>
+                        <div>Celulares</div>
+                        <div class="dispositivo-count" id="count-celular">0</div>
+                    </div>
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('tv', 1)">
+                        <div class="dispositivo-icon">📺</div>
+                        <div>Smart TVs</div>
+                        <div class="dispositivo-count" id="count-tv">0</div>
+                    </div>
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('laptop', 1)">
+                        <div class="dispositivo-icon">💻</div>
+                        <div>Laptops/PCs</div>
+                        <div class="dispositivo-count" id="count-laptop">0</div>
+                    </div>
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('tablet', 1)">
+                        <div class="dispositivo-icon">📱</div>
+                        <div>Tablets</div>
+                        <div class="dispositivo-count" id="count-tablet">0</div>
+                    </div>
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('gamer', 1)">
+                        <div class="dispositivo-icon">🎮</div>
+                        <div>Consolas</div>
+                        <div class="dispositivo-count" id="count-gamer">0</div>
+                    </div>
+                    <div class="dispositivo-item" onclick="actualizarDispositivo('iot', 1)">
+                        <div class="dispositivo-icon">🏠</div>
+                        <div>Smart Home</div>
+                        <div class="dispositivo-count" id="count-iot">0</div>
+                    </div>
+                </div>
+
+                <div class="slider-container">
+                    <div class="slider-label">
+                        <span>Uso de internet</span>
+                        <span id="uso-label">Moderado</span>
+                    </div>
+                    <input type="range" id="uso-slider" min="1" max="3" value="2" oninput="calcularPlan()">
+                </div>
+
+                <div class="resultado-calculadora" id="resultado-plan">
+                    <div class="plan-recomendado" id="plan-nombre">Plan Plus</div>
+                    <div class="plan-precio" id="plan-precio">$549.00 MXN/mes</div>
+                    <p id="plan-descripcion">Perfecto para tu hogar</p>
+                    <button class="cta-button" style="margin-top: 1rem;" onclick="contratarPlan()">
+                        Contratar este plan
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contadores Animados -->
+        <section id="contadores">
+            <div class="contadores-grid">
+                <div class="contador-item">
+                    <span class="contador-numero" data-target="850">0</span>
+                    <span class="contador-label">Familias Conectadas</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" data-target="5">0</span>
+                    <span class="contador-label">Años de Experiencia</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" data-target="99">0</span>
+                    <span class="contador-label">% Clientes Satisfechos</span>
+                </div>
+                <div class="contador-item">
+                    <span class="contador-numero" data-target="24">0</span>
+                    <span class="contador-label">Horas de Soporte</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Paquetes -->
+        <section id="paquetes">
+            <h2>ELIJE TU NIVEL DE CONEXIÓN</h2>
+            <div class="paquetes-grid">
+                <div class="paquetes-card" data-plan="esencial">
+                    <img src="img/plan-esencial.png" alt="Plan Esencial 60 Megas">
+                    <h3>PLAN ESENCIAL</h3>
+                    <p class="velocidad">60 Mbps</p>
+                    <p class="precio">$349.00<span>/mes</span></p>
+                    <p class="descripcion">Ideales para hogares pequeños. Navega en redes sociales, llamadas y streaming en calidad HD.</p>
+                    <button onclick="seleccionarPlan('esencial')">CONTRATAR AHORA</button>
+                </div>
+                <div class="paquetes-card popular" data-plan="plus">
+                    <div class="badge">MÁS POPULAR</div>
+                    <img src="img/plan-plus.png" alt="Plan Plus 80 Megas">
+                    <h3>PLAN PLUS</h3>
+                    <p class="velocidad">80 Mbps</p>
+                    <p class="precio">$549.00<span>/mes</span></p>
+                    <p class="descripcion">Perfecto para familias conectadas. Múltiples dispositivos simultáneos con excelente estabilidad.</p>
+                    <button onclick="seleccionarPlan('plus')">CONTRATAR AHORA</button>
+                </div>
+                <div class="paquetes-card" data-plan="ultra">
+                    <img src="img/plan-ultra.png" alt="Plan Ultra para Gamers">
+                    <h3>PLAN ULTRA</h3>
+                    <p class="velocidad">100+ Mbps</p>
+                    <p class="precio">$649.00<span>/mes</span></p>
+                    <p class="descripcion">Diseñado para gamers y usuarios exigentes. Tecnología de alto rendimiento.</p>
+                    <button onclick="seleccionarPlan('ultra')">CONSULTAR DISPONIBILIDAD</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Acordeón -->
+        <section id="faq">
+            <h2>Preguntas Frecuentes</h2>
+            <div class="faq-item">
+                <div class="faq-pregunta" onclick="toggleFaq(this)">
+                    ¿Cuánto tarda la instalación?
+                </div>
+                <div class="faq-respuesta">
+                    Una vez confirmada tu solicitud, realizamos la instalación en un máximo de 24 a 48 horas hábiles. Trabajamos de lunes a sábado.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pregunta" onclick="toggleFaq(this)">
+                    ¿Hay plazos forzosos o penalizaciones?
+                </div>
+                <div class="faq-respuesta">
+                    ¡No! En IM Networks no creemos en plazos forzosos. Puedes cancelar cuando lo necesites sin penalizaciones ni letras pequeñas.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pregunta" onclick="toggleFaq(this)">
+                    ¿El equipo tiene costo adicional?
+                </div>
+                <div class="faq-respuesta">
+                    No, el router y la antena están incluidos en el servicio sin costo de renta.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pregunta" onclick="toggleFaq(this)">
+                    ¿Qué pasa si tengo problemas técnicos?
+                </div>
+                <div class="faq-respuesta">
+                    Contamos con soporte técnico disponible vía WhatsApp. En caso necesario, visita técnica el mismo día.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-pregunta" onclick="toggleFaq(this)">
+                    ¿Cómo sé si hay cobertura en mi zona?
+                </div>
+                <div class="faq-respuesta">
+                    Contáctanos por WhatsApp con tu dirección y verificamos disponibilidad inmediatamente. Estamos expandiendo nuestra red constantemente.
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
+        <section id="contacto">
+            <h2>¿Quieres más información? ¡Te contactamos!</h2>
+            <form id="form-contacto" onsubmit="enviarFormulario(event)">
+                <input type="text" name="nombre" placeholder="NOMBRE COMPLETO" required>
+                <input type="tel" name="telefono" placeholder="TELÉFONO (WhatsApp)" required>
+                <input type="email" name="email" placeholder="CORREO ELECTRÓNICO" required>
+                <select name="plan" id="select-plan" required>
+                    <option value="" disabled selected>¿QUÉ PLAN TE INTERESA?</option>
+                    <option value="esencial">Plan Esencial - $349</option>
+                    <option value="plus">Plan Plus - $549</option>
+                    <option value="ultra">Plan Ultra - $649</option>
+                    <option value="informacion">Solo quiero información</option>
+                </select>
+                <textarea name="mensaje" placeholder="¿DÓNDE TE GUSTARÍA INSTALAR EL SERVICIO? (Colonia, dirección aproximada)" required></textarea>
+                <button type="submit">ENVIAR SOLICITUD</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="im">IM</span>NETWORKS
+            </div>
+            <p>&copy; 2026 IM Networks. Todos los derechos reservados.</p>
+            <p>Servicio sujeto a disponibilidad en zona.</p>
+            <div class="footer-links">
+                <a href="#">Aviso de privacidad</a>
+                <a href="#">Términos y Condiciones</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/9994489035?text=Hola,%20vi%20su%20página%20web%20y%20me%20interesa%20contratar%20internet" class="whatsapp-float" target="_blank" id="whatsapp-btn">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.585.698 5.004 1.912 7.086L2 30l5.091-1.848A13.936 13.936 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.2c-2.279 0-4.404-.672-6.186-1.822l-.444-.278-3.033 1.103 1.018-2.954-.318-.508A11.24 11.24 0 014.8 16C4.8 9.492 9.492 4.8 16 4.8S27.2 9.492 27.2 16 22.508 27.2 16 27.2zm6.186-8.466c-.338-.17-1.994-.984-2.304-1.096-.31-.112-.536-.17-.762.17-.226.34-.876 1.096-1.072 1.32-.196.226-.392.254-.73.084-.338-.17-1.428-.526-2.72-1.678-1.006-.896-1.684-2.002-1.88-2.342-.196-.34-.02-.524.148-.692.152-.152.338-.392.508-.588.17-.196.226-.34.338-.566.112-.226.056-.424-.028-.594-.084-.17-.762-1.836-1.044-2.516-.274-.662-.552-.572-.762-.582l-.648-.014c-.226 0-.588.084-.896.424-.31.34-1.184 1.156-1.184 2.82 0 1.664 1.212 3.27 1.38 3.494.17.226 2.384 3.64 5.78 5.104.808.348 1.438.556 1.93.712.812.258 1.55.222 2.134.134.652-.096 1.994-.814 2.276-1.6.282-.786.282-1.46.196-1.6-.084-.14-.31-.226-.648-.396z"/>
+        </svg>
+        <span class="whatsapp-text">¡Escríbenos!</span>
+    </a>
+
+    <script>
+        // Partículas en el Hero
+        const canvas = document.getElementById('canvas-particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(30, 144, 255, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 50; i++) {
+                particles.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            
+            // Conectar partículas cercanas
+            particles.forEach((a, i) => {
+                particles.slice(i + 1).forEach(b => {
+                    const dx = a.x - b.x;
+                    const dy = a.y - b.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < 100) {
+                        ctx.strokeStyle = `rgba(30, 144, 255, ${0.1 * (1 - distance/100)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Sticky Header
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Calculadora de Plan
+        let dispositivos = {
+            celular: 0, tv: 0, laptop: 0, tablet: 0, gamer: 0, iot: 0
+        };
+
+        function actualizarDispositivo(tipo, cambio) {
+            dispositivos[tipo] = Math.max(0, dispositivos[tipo] + cambio);
+            document.getElementById(`count-${tipo}`).textContent = dispositivos[tipo];
+            
+            // Actualizar visual activo
+            const item = document.querySelector(`#count-${tipo}`).closest('.dispositivo-item');
+            if (dispositivos[tipo] > 0) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+            
+            calcularPlan();
+        }
+
+        function calcularPlan() {
+            const total = Object.values(dispositivos).reduce((a, b) => a + b, 0);
+            const uso = parseInt(document.getElementById('uso-slider').value);
+            const usoLabels = {1: 'Básico', 2: 'Moderado', 3: 'Intensivo'};
+            document.getElementById('uso-label').textContent = usoLabels[uso];
+            
+            let planRecomendado = 'esencial';
+            let nombre = 'Plan Esencial';
+            let precio = '$349.00 MXN/mes';
+            let descripcion = 'Ideal para comenzar';
+            
+            const puntos = total + (uso * 2);
+            
+            if (puntos >= 8 || dispositivos.gamer > 0) {
+                planRecomendado = 'ultra';
+                nombre = 'Plan Ultra';
+                precio = '$649.00 MXN/mes';
+                descripcion = 'Máximo rendimiento para tu hogar';
+            } else if (puntos >= 4) {
+                planRecomendado = 'plus';
+                nombre = 'Plan Plus';
+                precio = '$549.00 MXN/mes';
+                descripcion = 'Perfecto para tu familia';
+            }
+            
+            const resultado = document.getElementById('resultado-plan');
+            resultado.classList.add('visible');
+            document.getElementById('plan-nombre').textContent = nombre;
+            document.getElementById('plan-precio').textContent = precio;
+            document.getElementById('plan-descripcion').textContent = descripcion;
+            resultado.dataset.plan = planRecomendado;
+        }
+
+        function contratarPlan() {
+            const plan = document.getElementById('resultado-plan').dataset.plan;
+            seleccionarPlan(plan);
+        }
+
+        function seleccionarPlan(plan) {
+            const select = document.getElementById('select-plan');
+            select.value = plan;
+            document.getElementById('contacto').scrollIntoView({behavior: 'smooth'});
+            
+            // Actualizar WhatsApp
+            const planes = {
+                esencial: 'Plan%20Esencial%20-%20$349',
+                plus: 'Plan%20Plus%20-%20$549',
+                ultra: 'Plan%20Ultra%20-%20$649'
+            };
+            document.getElementById('whatsapp-btn').href = 
+                `https://wa.me/9999093760?text=Hola,%20me%20interesa%20el%20${planes[plan]}`;
+        }
+
+        // Contadores Animados
+        const contadoresObservados = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 2000;
+                    const step = target / (duration / 16);
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(current);
+                        }
+                    }, 16);
+                    
+                    contadoresObservados.unobserve(counter);
+                }
+            });
+        }, {threshold: 0.5});
+
+        document.querySelectorAll('.contador-numero').forEach(counter => {
+            contadoresObservados.observe(counter);
+        });
+
+        // FAQ Acordeón
+        function toggleFaq(element) {
+            const item = element.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Cerrar todos
+            document.querySelectorAll('.faq-item').forEach(faq => {
+                faq.classList.remove('active');
+            });
+            
+            // Abrir el clickeado si no estaba activo
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+
+        // Animación de entrada para tarjetas
+        const cardsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {threshold: 0.1});
+
+        document.querySelectorAll('.paquetes-card').forEach(card => {
+            cardsObserver.observe(card);
+        });
+
+        // Formulario
+        function enviarFormulario(e) {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const datos = Object.fromEntries(formData);
+            
+            // Aquí conectarías con Formspree o tu backend
+            alert(`¡Gracias ${datos.nombre}! Te contactaremos pronto al ${datos.telefono}`);
+            e.target.reset();
+        }
+
+        // Inicializar calculadora
+        calcularPlan();
+    </script>
+</body>
+</html>
